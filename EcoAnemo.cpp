@@ -8,6 +8,7 @@
 #include "Arduino.h"
 
 static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
+static unsigned long ContactBounceTime;
 /*
 Ecoanemo::Ecoanemo(int read_pin_wind_speed, bool debug)
 {
@@ -119,10 +120,10 @@ float Ecoanemo::get_windspeed()
 * (ISR for Interrupt Service Routine)
 */
 void Ecoanemo::_isr_rotation(){
-  //if ((millis() - ContactBounceTime) > 15 ) { // debounce the switch contact.
+  if ((millis() - ContactBounceTime) > 15 ) { // debounce the switch contact.
     Rotations++;
-    //ContactBounceTime = millis();
-  //}
+    ContactBounceTime = millis();
+  }
 }
 
 
