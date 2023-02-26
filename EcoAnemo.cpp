@@ -6,19 +6,19 @@
 
 #include "Arduino.h"
 #include "Ecoanemo.h"
-
+/*
 Ecoanemo::Ecoanemo(int read_pin_wind_speed, bool debug)
 {
   int _read_pin_wind_speed = read_pin_wind_speed;
   bool _debug = debug;
 }
-
+*/
 void Ecoanemo::begin(){
   pinMode(_read_pin_wind_speed, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(_read_pin_wind_speed), _isr_rotation, FALLING);
 }
 
-int Ecoanemo::get_winddirection(int red_pin, bool debug)
+int Ecoanemo::get_winddirection(int red_pin)
 {
   int analogInput;
   int windDirection;
@@ -26,7 +26,7 @@ int Ecoanemo::get_winddirection(int red_pin, bool debug)
   analogInput = analogRead(red_pin);
   analogInput = analogRead(red_pin);        // Take twice the mesure is necessary
 
-  if(debug)
+  if(_debug)
   {
     Serial.print(F("[DEBUG] analogInput: "));
     Serial.println(analogInput);
@@ -54,7 +54,7 @@ int Ecoanemo::get_winddirection(int red_pin, bool debug)
     }
   }
 
-  if(debug)
+  if(_debug)
   {
     Serial.print(F("[DEBUG] windDirection: "));
     Serial.print(windDirection);
@@ -66,17 +66,17 @@ int Ecoanemo::get_winddirection(int red_pin, bool debug)
 }
 
 
-float Ecoanemo::get_windspeed(bool debug)
+float Ecoanemo::get_windspeed()
 {
   float windspeed;
   int T = 3000;                   // the sample period
-  Rotations = 0;                  // Set Rotations count to 0 ready for calculations
+  //Rotations = 0;                  // Set Rotations count to 0 ready for calculations
   delay(T);                       // Now it's waiting for intterupts (See _isr_rotation())
 
-  if(debug)
+  if(_debug)
   {
     Serial.print(F("Rotations: "));
-    Serial.print(Rotations);
+    //Serial.print(Rotations);
     Serial.print(F("\t"));
   }
   /*
@@ -94,7 +94,7 @@ float Ecoanemo::get_windspeed(bool debug)
   windspeed = Rotations * (2.25/(T/1000));   //MPH
   windspeed = windspeed * 1.609;      // Covert miles per hour to km/h
 
-  if(debug)
+  if(_debug)
   {
     Serial.print(windspeed);
     Serial.print(F(" km/h"));
@@ -110,7 +110,7 @@ float Ecoanemo::get_windspeed(bool debug)
 * (ISR for Interrupt Service Routine)
 */
 
-void Ecoanemo::_isr_rotation(){
+static void Ecoanemo::_isr_rotation(){
   
   //if ((millis() - ContactBounceTime) > 15 ) { // debounce the switch contact.
     //Rotations++;
