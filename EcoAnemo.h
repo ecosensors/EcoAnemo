@@ -10,7 +10,7 @@
 #define Ecoanemo_h
 
 class Ecoanemo{
-    volatile bool Rotations;
+
 	public:
 		Ecoanemo(int read_pin_wind_speed, bool debug);
         void begin();
