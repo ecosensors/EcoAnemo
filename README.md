@@ -46,4 +46,7 @@ Report the analog values to the first column of 'WDdirection[18]' in EcoAneno.h
 In the example file, you can do the above steps in calibration.h file, specialy if you defined the analogReadResolution to 12. (I created calibration.h for my personal need)
 
 ## Offset
-If the arm is not directed to the north, it must be corrected 'WindDirectionOffset' in EcoAneno.h to adjust
+If the arm is not directed to the north, it must be corrected 'WindDirectionOffset' in EcoAneno.h to 
+
+## Version
+[26.2.2023] v.1

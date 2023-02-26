@@ -12,10 +12,10 @@
 class Ecoanemo{
 
 	public:
-		Ecoanemo(int WindSpeedPin, bool dbg=false): _read_pin_wind_speed(WindSpeedPin), _debug(dbg) {};
+		Ecoanemo(int WindSpeedPin, int WindDirectionPin, bool dbg=false): _read_pin_wind_speed(WindSpeedPin), _read_pin_wind_direction(WindDirectionPin), _debug(dbg) {};
         void begin();
         
-        int get_winddirection(int read_pin);
+        int get_winddirection();
         float get_windspeed();
         //int WDdirection[18];
         int WindDirectionOffset = 0;                    // 0 : the van is directed to the north
@@ -39,6 +39,7 @@ class Ecoanemo{
     private:
         bool _debug;
         int _read_pin_wind_speed;
+        int _read_pin_wind_direction;
         static void _isr_rotation();
         // static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
 

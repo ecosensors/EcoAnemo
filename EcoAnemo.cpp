@@ -7,30 +7,20 @@
 #include "Ecoanemo.h"
 #include "Arduino.h"
 
-//static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
-//static unsigned long ContactBounceTime; // To debounce
-
-/*
-Ecoanemo::Ecoanemo(int read_pin_wind_speed, bool debug)
-{
-  int _read_pin_wind_speed = read_pin_wind_speed;
-  bool _debug = debug;
-}
-*/
-
 void Ecoanemo::begin(){
   pinMode(_read_pin_wind_speed, INPUT_PULLUP);
+  pinMode(_read_pin_wind_direction, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(_read_pin_wind_speed), _isr_rotation, FALLING);
 }
 
-int Ecoanemo::get_winddirection(int red_pin)
+int Ecoanemo::get_winddirection()
 {
   /* TODO */
   int analogInput;
   int windDirection;
   Serial.println(F("\r\nWind direction"));
-  analogInput = analogRead(red_pin);
-  analogInput = analogRead(red_pin);        // Take twice the mesure is necessary
+  analogInput = analogRead(_read_pin_wind_direction);
+  analogInput = analogRead(_read_pin_wind_direction);        // Take twice the mesure is necessary
 
   if(_debug)
   {
@@ -91,11 +81,11 @@ float Ecoanemo::get_windspeed()
   float windspeed;
 
   int T = 3000;                   // the sample period
-  Rotations = 0;                // Set Rotations count to 0 ready for calculations
+  Rotations = 0;                  // Set Rotations count to 0 ready for calculations
 
   if(_debug){
     Serial.print(T/1000);
-    Serial.println(F(" .s sample of period"));
+    Serial.println(F("s. sample of period"));
   }
 
   delay(T);                       // Now it's waiting for intterupts (See _isr_rotation())
