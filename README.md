@@ -11,10 +11,12 @@ The library has been tested for the ATSAMD21G18 ARM Cortex M0 at 48Mhz board wit
 
 ## Wiring
 
-Green 		=> Wind direction input (A1) 
-Yellow		=> 3.3V
-Black		=> Wind speed input (A0). Add a 4.7K (?? 20K ??)to the VCC
-Red			=> GND
+Wire | I/O
+--- | ---
+Green | Wind direction input (A1) 
+Yellow | 3.3V
+Black | Wind speed input (A0). Add a 4.7K (?? 20K ??)to the VCC
+Red | GND
 
 Wind Direction Translation: Variable resistance 0 - 20KΩ; 10KΩ = south, 180°
 Wind Speed Translation Formula: 
