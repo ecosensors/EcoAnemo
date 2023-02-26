@@ -35,7 +35,7 @@ class Ecoanemo{
   		}; 
 
     protected:
-        //static unsigned long Rotations;
+        static unsigned long Rotations;
         
     private:
         bool _begug;
