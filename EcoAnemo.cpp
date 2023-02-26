@@ -18,12 +18,12 @@ int Ecoanemo::get_winddirection()
   /* TODO */
   int analogInput;
   int windDirection;
-  Serial.println(F("\r\nWind direction"));
   analogInput = analogRead(_read_pin_wind_direction);
   analogInput = analogRead(_read_pin_wind_direction);        // Take twice the mesure is necessary
 
   if(_debug)
   {
+    Serial.println(F("[DEBUG] Wind direction"));
     Serial.print(F("[DEBUG] analogInput: "));
     Serial.println(analogInput);
   }
@@ -84,6 +84,7 @@ float Ecoanemo::get_windspeed()
   Rotations = 0;                  // Set Rotations count to 0 ready for calculations
 
   if(_debug){
+    Serial.print(F("[DEBUG] "));
     Serial.print(T/1000);
     Serial.println(F("s. sample of period"));
   }
@@ -92,7 +93,7 @@ float Ecoanemo::get_windspeed()
 
   if(_debug)
   {
-    Serial.print(F("Rotations: "));
+    Serial.print(F("[DEBUG] Rotations: "));
     Serial.print(Rotations);
     Serial.print(F("\t"));
   }
@@ -102,6 +103,7 @@ float Ecoanemo::get_windspeed()
 
   if(_debug)
   {
+    //Serial.print(F("[DEBUG] "));
     Serial.print(windspeed);
     Serial.println(F(" km/h"));
   }
