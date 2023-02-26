@@ -18,7 +18,7 @@ class Ecoanemo{
                        // (ANENO) cup rotation counter used in interrupt routine
         volatile unsigned long ContactBounceTime;       // /ANENO) Timer to avoid contact bounce in interrupt
 		int get_winddirection(int read_pin, bool debug);
-		float get_windspeed(int read_pin, bool debug);
+		float get_windspeed(bool debug);
 		//int WDdirection[18];
 		int WindDirectionOffset = 0;                    // 0 : the van is directed to the north
 		int WDdirection[18] {

@@ -66,12 +66,12 @@ int Ecoanemo::get_winddirection(int red_pin, bool debug)
 }
 
 
-float Ecoanemo::get_windspeed(int red_pin, bool debug)
+float Ecoanemo::get_windspeed(bool debug)
 {
   float windspeed;
-  int T = 3000;
+  int T = 3000;                   // the sample period
   Rotations = 0;                  // Set Rotations count to 0 ready for calculations
-  delay(T);                         // Now it's waiting for intterupts (See _isr_rotation())
+  delay(T);                       // Now it's waiting for intterupts (See _isr_rotation())
 
   if(debug)
   {
