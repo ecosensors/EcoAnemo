@@ -8,7 +8,8 @@
 #include "Arduino.h"
 
 static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
-static unsigned long ContactBounceTime;
+static unsigned long ContactBounceTime; // To debounce
+
 /*
 Ecoanemo::Ecoanemo(int read_pin_wind_speed, bool debug)
 {
@@ -23,6 +24,7 @@ void Ecoanemo::begin(){
 
 int Ecoanemo::get_winddirection(int red_pin)
 {
+  /* TODO */
   int analogInput;
   int windDirection;
   Serial.println(F("\r\nWind direction"));
@@ -71,6 +73,18 @@ int Ecoanemo::get_winddirection(int red_pin)
 
 float Ecoanemo::get_windspeed()
 {
+  /*
+    // http://cactus.io/hookups/weather/anemometer/davis/hookup-arduino-to-davis-anemometer-wind-speed
+
+    Using the formula V = P(2.25/T) we can calculate the speed in miles per hour.
+    V is speed in miles per hour
+    P is number of pulses per sample period
+    T is the sample period in seconds
+
+    Convert to mp/h using the formula V=P(2.25/T)
+    V = P(2.25/T/1000) = P * 0.75 // assuming that T is egal to 3000ms but it must be in second
+  */
+
   float windspeed;
 
   int T = 3000;                   // the sample period
@@ -89,17 +103,6 @@ float Ecoanemo::get_windspeed()
     Serial.print(Rotations);
     Serial.print(F("\t"));
   }
-  /*
-    // http://cactus.io/hookups/weather/anemometer/davis/hookup-arduino-to-davis-anemometer-wind-speed
-
-    Using the formula V = P(2.25/T) we can calculate the speed in miles per hour.
-    V is speed in miles per hour
-    P is number of pulses per sample period
-    T is the sample period in seconds
-
-    Convert to mp/h using the formula V=P(2.25/T)
-    V = P(2.25/T/1000) = P * 0.75 // assuming that T is egal to 3000ms but it must be in second
-  */
 
   windspeed = Rotations * (2.25/(T/1000));   //MPH
   windspeed = windspeed * 1.609;      // Covert miles per hour to km/h
@@ -111,7 +114,6 @@ float Ecoanemo::get_windspeed()
   }
 
   return windspeed;
-  
 
 }
 
