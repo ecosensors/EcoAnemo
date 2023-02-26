@@ -27,7 +27,7 @@ V = P(2.25/T) (V = speed in mph, P = no. of pulses per sample period, T = sample
 
 Run your board and move the wind vane to the north (0°) and write down the analog value. Turn the wind vane to 45° (NE). Turn again the wind vane to 45° (E) and write down the anaog value and repeat the operation each 45°.
 
-Degre | Direction
+Degre | Analog value (Direction)
 --- | ---
 0° 	| ... (N)
 45° | ... (NE)
