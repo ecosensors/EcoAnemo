@@ -15,7 +15,7 @@ class Ecoanemo{
 		Ecoanemo(int read_pin_wind_speed, bool debug);
         void begin();
         
-                       // (ANENO) cup rotation counter used in interrupt routine
+                       
         volatile unsigned long ContactBounceTime;       // /ANENO) Timer to avoid contact bounce in interrupt
         int get_winddirection(int read_pin, bool debug);
         float get_windspeed(bool debug);
@@ -35,7 +35,7 @@ class Ecoanemo{
   		}; 
 
     protected:
-        static unsigned long Rotations;
+        static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
         
     private:
         bool _begug;
