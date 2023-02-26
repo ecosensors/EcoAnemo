@@ -5,7 +5,7 @@ The library is actually under developpement
 Arduino library for the DEVIS anenomter and wind direction sensors is distributed WITHOUT WARRANTY.
 The library has been tested for the ATSAMD21G18 ARM Cortex M0 at 48Mhz board with 3V3 logic.
 
-(Sensor reference: 6410 | [Documentation](assets/07395-277_IM_6410.pdf)) | [Spec sheet](assets/6410_SS.pdf))
+Sensor reference: 6410 | [Documentation](assets/07395-277_IM_6410.pdf) | [Spec sheet](assets/6410_SS.pdf)
 
 ![DEVIS anenomter](https://eco-sensors.ch/wp-content/uploads/2020/08/anemomter.jpg)
 
