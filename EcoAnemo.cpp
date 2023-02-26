@@ -110,7 +110,7 @@ float Ecoanemo::get_windspeed(bool debug)
 * (ISR for Interrupt Service Routine)
 */
 
-static void Ecoanemo::_isr_rotation(){
+void Ecoanemo::_isr_rotation(){
   
   //if ((millis() - ContactBounceTime) > 15 ) { // debounce the switch contact.
     //Rotations++;
