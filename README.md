@@ -2,14 +2,12 @@
 
 The library is actually under developpement
 
-Library for the DEVIS anenomter and wind direction sensors is distributed WITHOUT WARRANTY.
+Arduino library for the DEVIS anenomter and wind direction sensors is distributed WITHOUT WARRANTY.
+The library has been tested for the ATSAMD21G18 ARM Cortex M0 at 48Mhz board with 3V3 logic.
 
-(Référence: 6410 | [Documentation](assets/07395-277_IM_6410.pdf)) | [Spec sheet](assets/6410_SS.pdf))
+(Sensor reference: 6410 | [Documentation](assets/07395-277_IM_6410.pdf)) | [Spec sheet](assets/6410_SS.pdf))
 
 ![DEVIS anenomter](https://eco-sensors.ch/wp-content/uploads/2020/08/anemomter.jpg)
-
-The library has been tested for the ATSAMD21G18 ARM Cortex M0 at 48Mhz board with 3V3 logic
-
 
 ## Wiring
 
@@ -29,15 +27,17 @@ V = P(2.25/T) (V = speed in mph, P = no. of pulses per sample period, T = sample
 
 Run your board and move the wind vane to the north (0°) and write down the analog value. Turn the wind vane to 45° (NE). Turn again the wind vane to 45° (E) and write down the anaog value and repeat the operation each 45°.
 
-0° 		=> ... (N)
-45° 	=> ... (NE)
-90°		=> ... (E)
-135°	=> ... (SE)
-180°	=> ... (S)
-225°	=> ... (SW)
-270°	=> ... (W)
-315°	=> ... (NW)
-360°	=> ... (N)
+Degre | Direction
+=================
+0° 	| ... (N)
+45° | ... (NE)
+90°	| ... (E)
+135°  | ... (SE)
+180° | ... (S)
+225° | ... (SW)
+270° | ... (W)
+315° | ... (NW)
+360° | ... (N)
 
 Report the analog values to the first column of 'WDdirection[18]' in EcoAneno.h
 
