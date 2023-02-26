@@ -23,10 +23,21 @@ int Ecoanemo::get_winddirection()
 
   if(_debug)
   {
-    Serial.println(F("[DEBUG] Wind direction"));
+    Serial.println(F("[DEBUG] WIND DIRECTION"));
     Serial.print(F("[DEBUG] analogInput: "));
     Serial.println(analogInput);
   }
+
+  if (analogInput < 561) windDirection = int(analogInput * 0.16);
+  else windDirection = int(analogInput * 0.67 - 309);
+
+  Serial.print(F("Winddirection test: "));
+  Serial.println(windDirection);
+  Serial.println(F(""));
+
+  windDirection=0;
+
+  
 
 
   if (analogInput <= WDdirection[0])

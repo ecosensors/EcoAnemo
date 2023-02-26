@@ -22,14 +22,14 @@ class Ecoanemo{
         int WDdirection[18] {
     		// Analog value, direction direction (° degre)
     		0,    0,    // N
-    		270,  45,   // NE
-    		561,  90,   // E
-    		642,  135,  // ES
-    		743,  180,  // S
-    		814,  225,  // SW
-    		870,  270,  // W
-    		920,  315,  // WN
-    		987,  360,  // N
+    		200,  45,   // NE
+    		416,  90,   // E
+    		555,  135,  // ES
+    		714,  180,  // S
+    		892,  225,  // SW
+    		1265,  270,  // W
+    		1785,  315,  // WN
+    		3200,  360,  // N
   		}; 
 
     protected:
