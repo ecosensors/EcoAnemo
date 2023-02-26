@@ -7,8 +7,8 @@
 #include "Ecoanemo.h"
 #include "Arduino.h"
 
-static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
-static unsigned long ContactBounceTime; // To debounce
+//static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
+//static unsigned long ContactBounceTime; // To debounce
 
 /*
 Ecoanemo::Ecoanemo(int read_pin_wind_speed, bool debug)
@@ -17,6 +17,7 @@ Ecoanemo::Ecoanemo(int read_pin_wind_speed, bool debug)
   bool _debug = debug;
 }
 */
+
 void Ecoanemo::begin(){
   pinMode(_read_pin_wind_speed, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(_read_pin_wind_speed), _isr_rotation, FALLING);
@@ -70,6 +71,8 @@ int Ecoanemo::get_winddirection(int red_pin)
 
 }
 
+unsigned long Ecoanemo::Rotations;
+unsigned long Ecoanemo::ContactBounceTime;
 
 float Ecoanemo::get_windspeed()
 {
