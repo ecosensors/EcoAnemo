@@ -70,7 +70,7 @@ float Ecoanemo::get_windspeed()
 {
   float windspeed;
   int T = 3000;                   // the sample period
-  //Rotations = 0;                // Set Rotations count to 0 ready for calculations
+  Rotations = 0;                // Set Rotations count to 0 ready for calculations
   delay(T);                       // Now it's waiting for intterupts (See _isr_rotation())
 
   if(_debug)
