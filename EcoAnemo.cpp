@@ -4,8 +4,10 @@
 * 
 */
 
-#include "Arduino.h"
 #include "Ecoanemo.h"
+#include "Arduino.h"
+
+static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
 /*
 Ecoanemo::Ecoanemo(int read_pin_wind_speed, bool debug)
 {
@@ -69,14 +71,21 @@ int Ecoanemo::get_winddirection(int red_pin)
 float Ecoanemo::get_windspeed()
 {
   float windspeed;
+
   int T = 3000;                   // the sample period
   Rotations = 0;                // Set Rotations count to 0 ready for calculations
+
+  if(_debug){
+    Serial.print(T/1000);
+    Serial.println(F(" .s sample of period"));
+  }
+
   delay(T);                       // Now it's waiting for intterupts (See _isr_rotation())
 
   if(_debug)
   {
     Serial.print(F("Rotations: "));
-    //Serial.print(Rotations);
+    Serial.print(Rotations);
     Serial.print(F("\t"));
   }
   /*
@@ -97,7 +106,7 @@ float Ecoanemo::get_windspeed()
   if(_debug)
   {
     Serial.print(windspeed);
-    Serial.print(F(" km/h"));
+    Serial.println(F(" km/h"));
   }
 
   return windspeed;
@@ -111,7 +120,7 @@ float Ecoanemo::get_windspeed()
 */
 void Ecoanemo::_isr_rotation(){
   //if ((millis() - ContactBounceTime) > 15 ) { // debounce the switch contact.
-    //Rotations++;
+    Rotations++;
     //ContactBounceTime = millis();
   //}
 }

@@ -41,7 +41,7 @@ class Ecoanemo{
         bool _debug;
         int _read_pin_wind_speed;
         static void _isr_rotation();
-        static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
+        // static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
 
  };
  #endif
