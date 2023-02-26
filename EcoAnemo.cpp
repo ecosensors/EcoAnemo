@@ -109,14 +109,11 @@ float Ecoanemo::get_windspeed()
 * This is the function that the interrupt calls to increment the rotation count
 * (ISR for Interrupt Service Routine)
 */
-
 static void Ecoanemo::_isr_rotation(){
-  
   //if ((millis() - ContactBounceTime) > 15 ) { // debounce the switch contact.
     //Rotations++;
     //ContactBounceTime = millis();
   //}
-
 }
 
 

@@ -12,13 +12,13 @@
 class Ecoanemo{
 
 	public:
-		Ecoanemo(int pin, bool dbg=false): _read_pin_wind_speed(pin), _debug(dbg) {};
+		Ecoanemo(int WindSpeedPin, bool dbg=false): _read_pin_wind_speed(WindSpeedPin), _debug(dbg) {};
         void begin();
         
                        
         //volatile unsigned long ContactBounceTime;       // /ANENO) Timer to avoid contact bounce in interrupt
-        int get_winddirection(int read_pin, bool debug);
-        float get_windspeed(bool debug);
+        int get_winddirection(int read_pin);
+        float get_windspeed();
         //int WDdirection[18];
         int WindDirectionOffset = 0;                    // 0 : the van is directed to the north
         int WDdirection[18] {
