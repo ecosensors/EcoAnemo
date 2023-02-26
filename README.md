@@ -3,6 +3,7 @@
 The library is actually under developpement
 
 Library for the DEVIS anenomter and wind direction sensors is distributed WITHOUT WARRANTY.
+
 (Référence: 6410 | [Documentation](assets/07395-277_IM_6410.pdf)) | [Spec sheet](assets/6410_SS.pdf))
 
 ![DEVIS anenomter](https://eco-sensors.ch/wp-content/uploads/2020/08/anemomter.jpg)
