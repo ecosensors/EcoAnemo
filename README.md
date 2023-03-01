@@ -19,8 +19,8 @@ Black | Wind speed input (A0). Add a 4.7K (?? 20K ??)to the VCC
 Red | GND
 
 Wind Direction Translation: Variable resistance 0 - 20KΩ; 10KΩ = south, 180°
-Wind Speed Translation Formula: 
-1600 rev/hr = 1 mph
+
+Wind Speed Translation Formula: 1600 rev/hr = 1 mph
 V = P(2.25/T) (V = speed in mph, P = no. of pulses per sample period, T = sample period in seconds)
 
 
