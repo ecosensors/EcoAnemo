@@ -77,7 +77,7 @@ int Ecoanemo::get_winddirection()
       Serial.print("WDdirection[i + 2] : "); Serial.println(WDdirection[i + 2]);
 
       windDirection = WDdirection[i + 1] - ((WDdirection[i + 1] - WDdirection[i + 3]) * ((analogInput - WDdirection[i]) / (WDdirection[i + 2] - WDdirection[i])));
-      Serial.println( (WDdirection[i + 1] - WDdirection[i + 3]) * ((analogInput - WDdirection[i]) / (WDdirection[i + 2] - WDdirection[i])) );
+      Serial.println( WDdirection[i + 1] - ((WDdirection[i + 1] - WDdirection[i + 3]) * ((analogInput - WDdirection[i]) / (WDdirection[i + 2] - WDdirection[i]))) );
 
          //750
       //windDirection = (45 - ((45 - 90) * ((750 - 500) / (1000 - 500)))) * (1-2);
