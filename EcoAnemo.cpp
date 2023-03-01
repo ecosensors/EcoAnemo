@@ -19,6 +19,7 @@ int Ecoanemo::get_winddirection()
   int analogInput;
   int windDirection;
   analogInput = analogRead(_read_pin_wind_direction);
+  delay(10);
   analogInput = analogRead(_read_pin_wind_direction);        // Take twice the mesure is necessary
 
   if(_debug)
@@ -27,14 +28,14 @@ int Ecoanemo::get_winddirection()
     Serial.print(F("[DEBUG] analogInput: "));
     Serial.println(analogInput);
   }
-
+/*
   if (analogInput < 561) windDirection = int(analogInput * 0.16);
   else windDirection = int(analogInput * 0.67 - 309);
 
   Serial.print(F("Winddirection test: "));
   Serial.println(windDirection);
   Serial.println(F(""));
-
+*/
   windDirection=0;
 
   
@@ -54,9 +55,40 @@ int Ecoanemo::get_winddirection()
   {
     if ((analogInput >= WDdirection[i]) && (analogInput <= WDdirection[i + 2]))
     {
+      /*
+      int WDdirection[18] {
+        // Analog value, direction direction (° degre)
+        0,    0,    // N
+        500,  45,   // NE
+        1000,  90,   // E
+        1390,  135,  // ES
+        1860,  180,  // S
+        2350,  225,  // SW
+        2800,  270,  // W
+        3400,  315,  // WN
+        4095,  360,  // N
+      }; 
+      */
+      //720
+      Serial.print("WDdirection[i + 1] : "); Serial.println(WDdirection[i + 1]);
+      Serial.print("WDdirection[i + 3] : "); Serial.println(WDdirection[i + 3]);
+      Serial.print("analogInput : "); Serial.println(analogInput);
+      Serial.print("WDdirection[i] : "); Serial.println(WDdirection[i]);
+      Serial.print("WDdirection[i + 2] : "); Serial.println(WDdirection[i + 2]);
+
       windDirection = WDdirection[i + 1] - ((WDdirection[i + 1] - WDdirection[i + 3]) * ((analogInput - WDdirection[i]) / (WDdirection[i + 2] - WDdirection[i])));
-                          
+      Serial.println( (WDdirection[i + 1] - WDdirection[i + 3]) * ((analogInput - WDdirection[i]) / (WDdirection[i + 2] - WDdirection[i])) );
+
+         //750
+      //windDirection = (45 - ((45 - 90) * ((750 - 500) / (1000 - 500)))) * (1-2);
+
       //Serial.print("\t"); Serial.println(windDirection);
+       if(_debug)
+      {
+        Serial.print(F("[DEBUG] windDirection0: "));
+        Serial.print(windDirection);
+        Serial.println(F("°"));
+      }
       break;
     }
   }
@@ -71,7 +103,7 @@ int Ecoanemo::get_winddirection()
   return windDirection = windDirection + WindDirectionOffset;
 
 }
-
+  
 unsigned long Ecoanemo::Rotations;
 unsigned long Ecoanemo::ContactBounceTime;
 
