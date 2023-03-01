@@ -15,7 +15,7 @@ void Ecoanemo::begin(){
 
 int Ecoanemo::get_winddirection()
 {
-  /* TODO */
+  /* TODO - Developpemtn in progresss */
   int analogInput;
   int windDirection;
   analogInput = analogRead(_read_pin_wind_direction);
