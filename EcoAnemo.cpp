@@ -13,11 +13,11 @@ void Ecoanemo::begin(){
   attachInterrupt(digitalPinToInterrupt(_read_pin_wind_speed), _isr_rotation, FALLING);
 }
 
-int Ecoanemo::get_winddirection()
+int Ecoanemo::get_windDirectionDegree(bool rounded)
 {
   /* TODO - Developpemtn in progresss */
   int analogInput;
-  int windDirection;
+  int windDirection = 0;
   analogInput = analogRead(_read_pin_wind_direction);
   delay(10);
   analogInput = analogRead(_read_pin_wind_direction);        // Take twice the mesure is necessary
@@ -28,17 +28,6 @@ int Ecoanemo::get_winddirection()
     Serial.print(F("[DEBUG] analogInput: "));
     Serial.println(analogInput);
   }
-/*
-  if (analogInput < 561) windDirection = int(analogInput * 0.16);
-  else windDirection = int(analogInput * 0.67 - 309);
-
-  Serial.print(F("Winddirection test: "));
-  Serial.println(windDirection);
-  Serial.println(F(""));
-*/
-  windDirection=0;
-
-  
 
 
   if (analogInput <= WDdirection[0])
@@ -55,53 +44,81 @@ int Ecoanemo::get_winddirection()
   {
     if ((analogInput >= WDdirection[i]) && (analogInput <= WDdirection[i + 2]))
     {
-      /*
-      int WDdirection[18] {
-        // Analog value, direction direction (° degre)
-        0,    0,    // N
-        500,  45,   // NE
-        1000,  90,   // E
-        1390,  135,  // ES
-        1860,  180,  // S
-        2350,  225,  // SW
-        2800,  270,  // W
-        3400,  315,  // WN
-        4095,  360,  // N
-      }; 
-      */
-      //720
-      Serial.print("WDdirection[i + 1] : "); Serial.println(WDdirection[i + 1]);
-      Serial.print("WDdirection[i + 3] : "); Serial.println(WDdirection[i + 3]);
-      Serial.print("analogInput : "); Serial.println(analogInput);
-      Serial.print("WDdirection[i] : "); Serial.println(WDdirection[i]);
-      Serial.print("WDdirection[i + 2] : "); Serial.println(WDdirection[i + 2]);
 
-      windDirection = WDdirection[i + 1] - ((WDdirection[i + 1] - WDdirection[i + 3]) * ((analogInput - WDdirection[i]) / (WDdirection[i + 2] - WDdirection[i])));
-      Serial.println( WDdirection[i + 1] - ((WDdirection[i + 1] - WDdirection[i + 3]) * ((analogInput - WDdirection[i]) / (WDdirection[i + 2] - WDdirection[i]))) );
+      float numerateur = analogInput - WDdirection[i];
+      float denominateur = WDdirection[i + 2] - WDdirection[i];
+      windDirection = WDdirection[i + 1] - ((WDdirection[i + 1] - WDdirection[i + 3]) * (numerateur / denominateur));
 
-         //750
-      //windDirection = (45 - ((45 - 90) * ((750 - 500) / (1000 - 500))));
-
-      //Serial.print("\t"); Serial.println(windDirection);
-       if(_debug)
-      {
-        Serial.print(F("[DEBUG] windDirection0: "));
-        Serial.print(windDirection);
-        Serial.println(F("°"));
-      }
       break;
     }
   }
 
+  windDirection = windDirection + WindDirectionOffset;
+
+  if (windDirection > 360){
+    windDirection = windDirection - 360;
+  }
+
   if(_debug)
   {
-    Serial.print(F("[DEBUG] windDirection: "));
+    Serial.print(F("[DEBUG] Wind Direction: "));
     Serial.print(windDirection);
     Serial.println(F("°"));
   }
 
-  return windDirection = windDirection + WindDirectionOffset;
+  if(rounded)
+  {
+    if (windDirection < 22)
+      windDirection = 0;          // N
+    else if (windDirection < 67)
+      windDirection = 45;         // NE
+    else if (windDirection < 112)
+      windDirection = 90;         // E
+    else if (windDirection < 157)
+      windDirection = 135;        // SE
+    else if (windDirection < 212)
+      windDirection = 180;        // S
+    else if (windDirection < 247)
+      windDirection = 225;        // SW
+    else if (windDirection < 292)
+      windDirection = 270;        // W
+    else if (windDirection < 337)
+      windDirection = 315;        // NW
+    else
+      windDirection = 360;
+  }
 
+  if(_debug)
+  {
+    Serial.print(F("[DEBUG] Wind Direction rounded: "));
+    Serial.print(windDirection);
+    Serial.println(F("°"));
+  }
+  
+  return windDirection;
+
+}
+
+void Ecoanemo::get_windDirectionCoord(int degree)
+{
+  if (degree < 22)
+      Serial.println(F("N"));
+    else if (degree < 67)
+      Serial.println(F("NE"));
+    else if (degree < 112)
+      Serial.println(F("E"));
+    else if (degree < 157)
+      Serial.println(F("SE"));
+    else if (degree < 212)
+      Serial.println(F("S"));
+    else if (degree < 247)
+      Serial.println(F("SE"));
+    else if (degree < 292)
+      Serial.println(F("W"));
+    else if (degree < 337)
+      Serial.println(F("NW"));
+    else
+      Serial.println(F("N"));
 }
   
 unsigned long Ecoanemo::Rotations;
