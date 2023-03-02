@@ -24,7 +24,6 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
 
   if(_debug)
   {
-    Serial.println(F("[DEBUG] WIND DIRECTION"));
     Serial.print(F("[DEBUG] analogInput: "));
     Serial.println(analogInput);
   }
@@ -76,7 +75,7 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
       windDirection = 90;         // E
     else if (windDirection < 157)
       windDirection = 135;        // SE
-    else if (windDirection < 212)
+    else if (windDirection < 202)
       windDirection = 180;        // S
     else if (windDirection < 247)
       windDirection = 225;        // SW
@@ -86,15 +85,16 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
       windDirection = 315;        // NW
     else
       windDirection = 360;
+  
+    if(_debug)
+    {
+      Serial.print(F("[DEBUG] Wind Direction rounded: "));
+      Serial.print(windDirection);
+      Serial.println(F("°"));
+    }
+
   }
 
-  if(_debug)
-  {
-    Serial.print(F("[DEBUG] Wind Direction rounded: "));
-    Serial.print(windDirection);
-    Serial.println(F("°"));
-  }
-  
   return windDirection;
 
 }
@@ -109,7 +109,7 @@ void Ecoanemo::get_windDirectionCoord(int degree)
       Serial.println(F("E"));
     else if (degree < 157)
       Serial.println(F("SE"));
-    else if (degree < 212)
+    else if (degree < 202)
       Serial.println(F("S"));
     else if (degree < 247)
       Serial.println(F("SE"));
