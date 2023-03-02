@@ -7,7 +7,7 @@ The library has been tested for the ATSAMD21G18 ARM Cortex M0 at 48Mhz board wit
 
 Sensor reference: 6410 | [Documentation](assets/07395-277_IM_6410.pdf) | [Spec sheet](assets/6410_SS.pdf)
 
-![DEVIS anenomter](https://eco-sensors.ch/wp-content/uploads/2020/08/anemomter.jpg)
+![DEVIS anenomter](assets/station-meteo.jpg)
 
 ## Wiring
 
@@ -24,10 +24,16 @@ Wind Speed Translation Formula: 1600 rev/hr = 1 mph
 V = P(2.25/T) (V = speed in mph, P = no. of pulses per sample period, T = sample period in seconds)
 
 
+## How to use it
+Connect the Davis Anemometer to your board
 
-## Calibration
+### Calibration
+You should better make sure that the analog values returned by the vane (Wind direction) match to the cardinal directions. For the purpose, open the example file named calibration.ino and process to the following steps
 
-Run your board and move the wind vane to the north (0°) and write down the analog value. Turn the wind vane to 45° (NE). Turn again the wind vane to 45° (E) and write down the anaog value and repeat the operation each 45°.
+1. Make sure that the variable [WindDirectionOffset](https://github.com/ecosensors/EcoAnemo/blob/main/EcoAnemo.h#L18) is with the value 0
+2. Turn the vane at the same direction than the arm (metal point in the front)
+3. turn the vane and at each 45°, write down the analog values to the array [WDdirection](https://github.com/ecosensors/EcoAnemo/blob/main/EcoAnemo.h#L23)
+
 
 Analog value | Degre (Direction)
 --- | ---
@@ -41,12 +47,10 @@ Analog value | Degre (Direction)
 ... | 315° (NW)
 ... | 360° (N)
 
-Report the analog values to the first column of 'WDdirection[18]' in EcoAneno.h
 
-In the example file, you can do the above steps in calibration.h file, specialy if you defined the analogReadResolution to 12. (I created calibration.h for my personal need)
-
-## Offset
-If the arm is not directed to the north, it must be corrected 'WindDirectionOffset' in EcoAneno.h to 
+### Offset
+Fix the anemometer and orient the arm to the North. In that case, the variable 'WindDirectionOffset' must be egal to 0.
+If the arm is not oriented to the north, you have to modify 'WindDirectionOffset' in EcoAneno.h to. Expl: If the arm is oriented to the Est, the 'WindDirectionOffset' has to be changed to 90.
 
 ## Version
 [26.2.2023] v.1
