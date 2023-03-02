@@ -1,7 +1,6 @@
 #include <EcoAnemo.h>
 
 const int analogResolution  = 12;       // 10 or 12
-int analog_Resolution = 4095;           // 1023 (10) or 4095 (12)
   
 /* Wind direction */
 //int WDdirection[18];
