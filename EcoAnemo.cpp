@@ -99,6 +99,7 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
 
 }
 
+/* To be inproved */
 void Ecoanemo::get_windDirectionCoord(int degree)
 {
   if (degree < 22)
