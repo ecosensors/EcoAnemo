@@ -13,6 +13,11 @@ void Ecoanemo::begin(){
   attachInterrupt(digitalPinToInterrupt(_read_pin_wind_speed), _isr_rotation, FALLING);
 }
 
+int Ecoanemo::get_windDirectionDegree()
+{
+  return get_windDirectionDegree(true);
+}
+
 int Ecoanemo::get_windDirectionDegree(bool rounded)
 {
   /* TODO - Developpemtn in progresss */
@@ -24,7 +29,7 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
 
   if(_debug)
   {
-    Serial.print(F("[DEBUG] analogInput: "));
+    Serial.print(F("[DEBUG] analogInput: \t\t"));
     Serial.println(analogInput);
   }
 
@@ -60,7 +65,7 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
 
   if(_debug)
   {
-    Serial.print(F("[DEBUG] Wind Direction: "));
+    Serial.print(F("[DEBUG] Wind Direction: \t"));
     Serial.print(windDirection);
     Serial.println(F("°"));
   }
@@ -88,7 +93,7 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
   
     if(_debug)
     {
-      Serial.print(F("[DEBUG] Wind Direction rounded: "));
+      Serial.print(F("[DEBUG] Wind Direction rounded:\t"));
       Serial.print(windDirection);
       Serial.println(F("°"));
     }
@@ -102,6 +107,7 @@ int Ecoanemo::get_windDirectionDegree(bool rounded)
 /* To be inproved */
 void Ecoanemo::get_windDirectionCoord(int degree)
 {
+  Serial.print(F("[DEBUG] Cardinal: \t\t"));
   if (degree < 22)
       Serial.println(F("N"));
     else if (degree < 67)
@@ -146,17 +152,17 @@ float Ecoanemo::get_windspeed()
 
   if(_debug){
     Serial.print(F("[DEBUG] "));
+    Serial.print(F("Sample of period:\t"));
     Serial.print(T/1000);
-    Serial.println(F("s. sample of period"));
+    Serial.println(F(" second"));
   }
 
   delay(T);                       // Now it's waiting for intterupts (See _isr_rotation())
 
   if(_debug)
   {
-    Serial.print(F("[DEBUG] Rotations: "));
-    Serial.print(Rotations);
-    Serial.print(F("\t"));
+    Serial.print(F("[DEBUG] Rotations:\t\t"));
+    Serial.println(Rotations);
   }
 
   windspeed = Rotations * (2.25/(T/1000));   //MPH
@@ -164,7 +170,7 @@ float Ecoanemo::get_windspeed()
 
   if(_debug)
   {
-    //Serial.print(F("[DEBUG] "));
+    Serial.print(F("[DEBUG] Speed:\t\t\t"));
     Serial.print(windspeed);
     Serial.println(F(" km/h"));
   }

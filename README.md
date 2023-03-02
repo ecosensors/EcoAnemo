@@ -28,11 +28,11 @@ V = P(2.25/T) (V = speed in mph, P = no. of pulses per sample period, T = sample
 Connect the Davis Anemometer to your board
 
 ### Calibration
-You should better make sure that the analog values returned by the vane (Wind direction) match to the cardinal directions. For the purpose, open the example file named calibration.ino and process to the following steps
+You should better make sure that the analog values returned by the vane (Wind direction) match to the cardinal directions. For that purpose, open the example file named calibration.ino and process to the following steps
 
 1. Make sure that the variable [WindDirectionOffset](https://github.com/ecosensors/EcoAnemo/blob/main/EcoAnemo.h#L18) is with the value 0
 2. Turn the vane at the same direction than the arm (metal point in the front)
-3. turn the vane and at each 45°, write down the analog values to the array [WDdirection](https://github.com/ecosensors/EcoAnemo/blob/main/EcoAnemo.h#L23)
+3. turn the vane and at each 45°, write down the analog values to the array [WDdirection](https://github.com/ecosensors/EcoAnemo/blob/main/EcoAnemo.h#L24)
 
 
 Analog value | Degre (Direction)
@@ -51,6 +51,9 @@ Analog value | Degre (Direction)
 ### Offset
 Fix the anemometer and orient the arm to the North. In that case, the variable 'WindDirectionOffset' must be egal to 0.
 If the arm is not oriented to the north, you have to modify 'WindDirectionOffset' in EcoAneno.h to. Expl: If the arm is oriented to the Est, the 'WindDirectionOffset' has to be changed to 90.
+
+### Contribute
+Test it and feel free to improve it.
 
 ## Version
 [26.2.2023] v.1

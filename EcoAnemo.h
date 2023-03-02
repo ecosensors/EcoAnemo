@@ -17,6 +17,7 @@ class Ecoanemo{
         
         int WindDirectionOffset = 0;                    // 0 : the van is directed to the north
 
+        int get_windDirectionDegree();
         int get_windDirectionDegree(bool rounded);
         void get_windDirectionCoord(int degree);
         float get_windspeed();
