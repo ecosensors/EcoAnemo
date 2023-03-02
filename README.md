@@ -56,9 +56,7 @@ If the arm is not oriented to the north, you have to modify 'WindDirectionOffset
 [26.2.2023] v.1
 
 ## License
-EcoAnemo © 2022 by Pierre Amey is licensed under CC BY-NC-SA 4.0
-
-Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
