@@ -24,7 +24,7 @@ V = P(2.25/T) (V = speed in mph, P = no. of pulses per sample period, T = sample
 
 
 ## How to use it
-Connect the Davis Anemometer to your board
+Connect the Davis Anemometer to your board according to the Wiring section
 
 ### Calibration
 You should better make sure that the analog values returned by the vane (Wind direction) match to the cardinal directions. For that purpose, open the example file named calibration.ino and process to the following steps
