@@ -23,15 +23,15 @@ class Ecoanemo{
         float get_windspeed();
         int WDdirection[18] {
     		// Analog value, direction direction (° degre)
-    		0,    0,    // N
-    		500,  45,   // NE
-    		900,  90,   // E 943
-    		1220,  135,  // ES
-    		1720,  180,  // S
-    		2160,  225,  // SW
-    		2590,  270,  // W
-    		3020,  315,  // WN
-    		4095,  360,  // N
+    		0,    0,      // N
+    		500,  45,     // NE
+    		900,  90,     // E
+    		1220,  135,   // ES
+    		1720,  180,   // S
+    		2160,  225,   // SW
+    		2590,  270,   // W
+    		3020,  315,   // WN
+    		4095,  360,   // N
   		}; 
 
     protected:
@@ -43,7 +43,7 @@ class Ecoanemo{
         int _read_pin_wind_speed;
         int _read_pin_wind_direction;
         static void _isr_rotation();
-        // static unsigned long Rotations;         // (ANENO) cup rotation counter used in interrupt routine
+        // static unsigned long Rotations;          // (ANENO) cup rotation counter used in interrupt routine
 
  };
  #endif
