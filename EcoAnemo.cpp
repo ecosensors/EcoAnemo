@@ -20,13 +20,16 @@ int Ecoanemo::get_windDirectionDegree()
 
 int Ecoanemo::get_windDirectionDegree(bool rounded)
 {
-  /* TODO - Developpemtn in progresss */
+
   int analogInput;
   int windDirection = 0;
   analogInput = analogRead(_read_pin_wind_direction);
   delay(10);
-  analogInput = analogRead(_read_pin_wind_direction);        // Take twice the mesure is necessary
-
+  analogInput = analogRead(_read_pin_wind_direction);       // Take twice the mesure is necessary
+  delay(10);
+  analogInput = 0;
+  analogInput = analogRead(_read_pin_wind_direction);       // Take the measure
+  
   if(_debug)
   {
     Serial.print(F("[DEBUG] analogInput: \t\t"));
